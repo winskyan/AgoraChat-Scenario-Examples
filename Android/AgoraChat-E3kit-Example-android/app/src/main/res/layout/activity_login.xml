@@ -56,6 +56,7 @@
         android:layout_marginTop="18dp"
         android:hint="@string/sign_password"
         android:imeOptions="actionSend"
+        android:inputType="textPassword"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
