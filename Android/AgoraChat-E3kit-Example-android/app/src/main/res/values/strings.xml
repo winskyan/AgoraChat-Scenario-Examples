@@ -7,11 +7,12 @@
     <string name="chats">E3EncryptChats</string>
 
     <string name="sign_agora_id">AgoraID</string>
-    <string name="sign_nickname">Nickname</string>
+    <string name="sign_password">Password</string>
     <string name="sign_login">Log In</string>
+    <string name="register">Register</string>
     <string name="sign_error_illegal_character">Latin letters and numbers only.</string>
     <string name="sign_error_not_id">Please enter an AgoraID.</string>
-    <string name="sign_error_not_nickname">Please enter a nickname.</string>
+    <string name="sign_error_not_password">Please enter a password.</string>
 
     <string name="error_network_error">Network unavailable</string>
     <string name="error_not_login">You haven\'t logged in</string>
