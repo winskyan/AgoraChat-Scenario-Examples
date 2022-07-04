@@ -180,7 +180,7 @@ class LoginActivity : BaseActivity() {
 
     private fun loginToAppServer(
         username: String,
-        passworkd: String,
+        password: String,
         callBack: ResultCallBack<LoginBean>?
     ) {
         ThreadManager.instance?.runOnIOThread(Runnable {
@@ -190,7 +190,7 @@ class LoginActivity : BaseActivity() {
                 headers["Content-Type"] = "application/json"
                 val request = JSONObject()
                 request.putOpt("userAccount", username)
-                request.putOpt("userPassword", passworkd)
+                request.putOpt("userPassword", password)
                 val url =
                     BuildConfig.APP_SERVER_PROTOCOL + "://" + BuildConfig.APP_SERVER_DOMAIN + BuildConfig.APP_SERVER_URL
                 val response = HttpClientManager.httpExecute(
