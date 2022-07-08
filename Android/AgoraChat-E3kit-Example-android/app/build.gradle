@@ -25,7 +25,7 @@ android {
         buildConfigField("String", "APP_SERVER_DOMAIN", "\"a41.easemob.com\"")
         buildConfigField("String", "APP_SERVER_URL", "\"/app/chat/user/login\"")
         buildConfigField("String", "APP_SERVER_REGISTER", "\"/app/chat/user/register\"")
-        manifestPlaceholders = [AGORA_CHAT_APPKEY: properties.getProperty("AGORA_CHAT_APPKEY", "******")]
+        manifestPlaceholders = [AGORA_CHAT_APPKEY: properties.getProperty("AGORA_CHAT_APPKEY", "")]
     }
 
 

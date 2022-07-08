@@ -1,6 +1,10 @@
 package io.agora.e3kitdemo
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
+import android.text.TextUtils
+import android.widget.Toast
 import com.virgilsecurity.android.common.model.Group
 import com.virgilsecurity.sdk.cards.Card
 import io.agora.chat.ChatClient
@@ -53,7 +57,11 @@ class DemoHelper private constructor() {
 
     private fun initChatOptions(context: Context): ChatOptions {
         val options = ChatOptions()
-
+        if (!checkAgoraChatAppKey(context)) {
+            val error = context.getString(R.string.please_check)
+            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+            return options
+        }
         // Sets whether to automatically accept friend invitations. Default is true
         options.acceptInvitationAlways = false
         // Set whether read confirmation is required by the recipient
@@ -62,6 +70,27 @@ class DemoHelper private constructor() {
         options.requireDeliveryAck = true
         // Set whether to delete chat messages when exiting (actively and passively) a group
         return options
+    }
+
+    private fun checkAgoraChatAppKey(context: Context): Boolean {
+        val appPackageName = context.packageName
+        var ai: ApplicationInfo? = null
+        ai = try {
+            context.packageManager.getApplicationInfo(appPackageName, PackageManager.GET_META_DATA)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            return false
+        }
+        if (ai != null) {
+            val metaData = ai.metaData ?: return false
+            // read appkey
+            val appKeyFromConfig = metaData.getString("EASEMOB_APPKEY")
+            if (TextUtils.isEmpty(appKeyFromConfig) || !appKeyFromConfig!!.contains("#")) {
+                return false
+            }
+            return true
+        }
+        return false
     }
 
     fun initEThree(identity: String, context: Context, callback: () -> Unit) {
